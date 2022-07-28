@@ -5,7 +5,7 @@ resource "aws_db_instance" "mysql_db" {
   instance_class          = "db.t3.micro"
   db_name                 = "movies_db"
   username                = "admin_db"
-  password                = "very_secret_p4ssw0rd"
+  password                = jsondecode(data.aws_secretsmanager_secret_version.db_secret_ver.secret_string)["admin_db"]
   multi_az                = true
   skip_final_snapshot     = true
   db_subnet_group_name    = aws_db_subnet_group.mysql_db_subnet_grp.name

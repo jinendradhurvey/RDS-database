@@ -26,9 +26,9 @@ data "aws_security_group" "ec2_server" {
   }
 }
 
-#data "aws_secretsmanager_secret" "secrets" {
-# arn = "arn:aws:secretsmanager:us-east-1:342623272824:secret:wordpress_creds-pOsVNE"
-#}
-#data "aws_secretsmanager_secret_version" "current" {
-# secret_id = data.aws_secretsmanager_secret.secrets.id
-#}
+data "aws_secretsmanager_secret" "db_secret" {
+    arn = "arn:aws:secretsmanager:eu-west-1:254964228601:secret:database_login-lA7e0D"
+}
+data "aws_secretsmanager_secret_version" "db_secret_ver" {
+    secret_id = data.aws_secretsmanager_secret.db_secret.id
+}
